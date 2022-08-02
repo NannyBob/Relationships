@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Relationship Details.gd" type="Script" id=1]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+
+[node name="ShowHideButt" type="Button" parent="."]
+margin_right = 1024.0
+margin_bottom = 223.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+clip_text = true
+
+[node name="DescContainer" type="HBoxContainer" parent="."]
+margin_top = 227.0
+margin_right = 1024.0
+margin_bottom = 450.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DescLabel" type="Label" parent="DescContainer"]
+margin_top = 104.0
+margin_right = 36.0
+margin_bottom = 118.0
+text = "Desc:"
+
+[node name="Description" type="TextEdit" parent="DescContainer"]
+margin_left = 40.0
+margin_right = 984.0
+margin_bottom = 223.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+readonly = true
+
+[node name="EditButt" type="Button" parent="DescContainer"]
+margin_left = 988.0
+margin_right = 1024.0
+margin_bottom = 223.0
+text = "Edit"
+
+[node name="SelectButt" type="Button" parent="."]
+margin_top = 454.0
+margin_right = 1024.0
+margin_bottom = 521.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+text = "Select"
+clip_text = true
+
+[node name="DeleteButt" type="Button" parent="."]
+margin_top = 525.0
+margin_right = 1024.0
+margin_bottom = 592.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+custom_colors/font_color = Color( 1, 0.0117647, 0.0117647, 1 )
+text = "Delete"
+clip_text = true
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_top = 596.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[connection signal="pressed" from="ShowHideButt" to="." method="_on_ShowHideButt_pressed"]
+[connection signal="pressed" from="DescContainer/EditButt" to="." method="_on_EditButt_pressed"]
+[connection signal="pressed" from="SelectButt" to="." method="_on_SelectButt_pressed"]
+[connection signal="pressed" from="DeleteButt" to="." method="_on_DeleteButt_pressed"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Interface/Manage Entity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Manage Entities.gd" type="Script" id=2]
+[ext_resource path="res://Interface/Entity Chooser.tscn" type="PackedScene" id=3]
+
+[node name="Entity Options" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_left = 0.1
+anchor_right = 0.9
+anchor_bottom = 1.0
+tabs_visible = false
+
+[node name="Chooser" parent="TabContainer" instance=ExtResource( 3 )]
+margin_left = 4.0
+margin_top = 8.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 8.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Manage" parent="TabContainer/VBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 606.0
+margin_bottom = 564.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackButt" type="Button" parent="TabContainer/VBoxContainer"]
+margin_top = 568.0
+margin_right = 606.0
+margin_bottom = 588.0
+text = "Back"
+
+[connection signal="found_entity" from="TabContainer/Chooser" to="." method="_on_Chooser_found_entity"]
+[connection signal="pressed" from="TabContainer/VBoxContainer/BackButt" to="." method="_on_BackButton_pressed"]

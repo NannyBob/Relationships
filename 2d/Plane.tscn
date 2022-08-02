@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Plane.gd" type="Script" id=1]
+[ext_resource path="res://2d/Camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Starry Night.gdshader" type="Shader" id=3]
+[ext_resource path="res://Interface/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Theme/MinimalUI.tres" type="Theme" id=5]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+shader_param/bg_color = Color( 0.172549, 0.00784314, 0.00784314, 1 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 76.0
+margin_bottom = 100.0
+mouse_filter = 2
+
+[node name="Camera2D" parent="." instance=ExtResource( 2 )]
+
+[node name="Menu" parent="." instance=ExtResource( 4 )]
+
+[node name="ScreenHUD" type="CanvasLayer" parent="."]
+
+[node name="DeselectButt" type="Button" parent="ScreenHUD"]
+visible = false
+anchor_left = 0.4
+anchor_top = 0.9
+anchor_right = 0.6
+anchor_bottom = 0.95
+theme = ExtResource( 5 )
+text = "Deselect"
+
+[connection signal="new_selected" from="." to="Menu" method="_on_Node2D_new_selected"]
+[connection signal="hide_relationship_descriptions" from="Menu" to="." method="_on_HUD_hide_relationship_descriptions"]
+[connection signal="new_relationship" from="Menu" to="." method="_on_HUD_new_relationship"]
+[connection signal="show_relationship_signals" from="Menu" to="." method="_on_HUD_show_relationship_signals"]
+[connection signal="updated_entity" from="Menu" to="." method="_on_HUD_updated_entity"]
+[connection signal="updated_relationship" from="Menu" to="." method="_on_HUD_updated_relationship"]
+[connection signal="pressed" from="ScreenHUD/DeselectButt" to="." method="_on_DeselectButt_pressed"]

@@ -1,0 +1,178 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
+[ext_resource path="res://Its a me/frame_45_delay-0.1s.png" type="Texture" id=2]
+[ext_resource path="res://Its a me/frame_30_delay-0.1s.png" type="Texture" id=3]
+[ext_resource path="res://Its a me/frame_50_delay-0.1s.png" type="Texture" id=4]
+[ext_resource path="res://Its a me/frame_60_delay-0.1s.png" type="Texture" id=5]
+[ext_resource path="res://Its a me/frame_00_delay-0.1s - Copy.png" type="Texture" id=6]
+[ext_resource path="res://Its a me/frame_20_delay-0.1s.png" type="Texture" id=7]
+[ext_resource path="res://Its a me/frame_55_delay-0.1s.png" type="Texture" id=8]
+[ext_resource path="res://Its a me/frame_65_delay-0.1s.png" type="Texture" id=9]
+[ext_resource path="res://Its a me/frame_35_delay-0.1s.png" type="Texture" id=10]
+[ext_resource path="res://Its a me/frame_25_delay-0.1s.png" type="Texture" id=11]
+[ext_resource path="res://Its a me/frame_40_delay-0.1s.png" type="Texture" id=12]
+[ext_resource path="res://Its a me/frame_10_delay-0.1s.png" type="Texture" id=13]
+[ext_resource path="res://Its a me/frame_15_delay-0.1s.png" type="Texture" id=14]
+[ext_resource path="res://Its a me/frame_69_delay-0.1s.png" type="Texture" id=15]
+[ext_resource path="res://Its a me/frame_05_delay-0.1s.png" type="Texture" id=16]
+[ext_resource path="res://Interface/Directional Association.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Interface/Manage Entities.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Theme/MinimalUI.tres" type="Theme" id=19]
+[ext_resource path="res://Scripts/Plane Chooser.gd" type="Script" id=20]
+
+[sub_resource type="AnimatedTexture" id=1]
+flags = 4
+frames = 15
+fps = 3.0
+frame_0/texture = ExtResource( 6 )
+frame_1/texture = ExtResource( 16 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 13 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 14 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 7 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 11 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 3 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 10 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 12 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 2 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 4 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 8 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 5 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 9 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 15 )
+frame_14/delay_sec = 0.0
+
+[node name="Control" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+anchor_top = 0.05
+anchor_right = 0.2
+anchor_bottom = 0.95
+theme = ExtResource( 19 )
+
+[node name="TabContainer" type="TabContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+tab_align = 0
+
+[node name="Selected" parent="Control/TabContainer" instance=ExtResource( 18 )]
+margin_left = 1.0
+margin_top = 26.0
+margin_right = -1.0
+margin_bottom = -1.0
+
+[node name="Association" parent="Control/TabContainer" instance=ExtResource( 17 )]
+visible = false
+margin_left = 8.0
+margin_top = 56.0
+margin_right = 0.0
+margin_bottom = 20.0
+
+[node name="View" type="Panel" parent="Control/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 26.0
+margin_right = -1.0
+margin_bottom = -1.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/TabContainer/View"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 8.0
+margin_bottom = 8.0
+texture = SubResource( 1 )
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TabContainer/View"]
+anchor_left = 0.2
+anchor_right = 0.8
+anchor_bottom = 1.0
+margin_left = -48.04
+margin_top = 4.0
+margin_right = 45.84
+margin_bottom = -40.0
+
+[node name="ShowNamesBox" type="CheckButton" parent="Control/TabContainer/View/VBoxContainer"]
+margin_right = 277.0
+margin_bottom = 23.0
+text = "Show Relationship Descriptions"
+
+[node name="HSeparator" type="HSeparator" parent="Control/TabContainer/View/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 4.0
+
+[node name="Label2" type="Label" parent="Control/TabContainer/View/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 23.0
+text = "Categories to show:"
+align = 1
+
+[node name="CategoryFilters" type="VBoxContainer" parent="Control/TabContainer/View/VBoxContainer"]
+margin_top = 27.0
+margin_right = 277.0
+margin_bottom = 27.0
+
+[node name="HSeparator2" type="HSeparator" parent="Control/TabContainer/View/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 4.0
+
+[node name="Label" type="Label" parent="Control/TabContainer/View/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 23.0
+text = "Saves:"
+align = 1
+
+[node name="Planes" type="VBoxContainer" parent="Control/TabContainer/View/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 20 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TabContainer/View/VBoxContainer/Planes"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/TabContainer/View/VBoxContainer/Planes"]
+visible = false
+margin_top = 4.0
+margin_right = 1008.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/TabContainer/View/VBoxContainer/Planes/HBoxContainer"]
+margin_top = 5.0
+margin_right = 78.0
+margin_bottom = 19.0
+text = "New Plane: "
+
+[node name="LineEdit" type="LineEdit" parent="Control/TabContainer/View/VBoxContainer/Planes/HBoxContainer"]
+margin_left = 82.0
+margin_right = 140.0
+margin_bottom = 24.0
+expand_to_text_length = true
+caret_blink = true
+
+[node name="NewPlaneButt" type="Button" parent="Control/TabContainer/View/VBoxContainer/Planes/HBoxContainer"]
+margin_left = 144.0
+margin_right = 181.0
+margin_bottom = 24.0
+text = "Add"
+
+[connection signal="new_relationship" from="Control/TabContainer/Association" to="." method="_on_Create_Association_new_relationship"]
+[connection signal="toggled" from="Control/TabContainer/View/VBoxContainer/ShowNamesBox" to="." method="_on_ShowNamesBox_toggled"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/2dEntity.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Neuron.png" type="Texture" id=2]
+[ext_resource path="res://Theme/MinimalUI.tres" type="Theme" id=3]
+[ext_resource path="res://Sprites/anchor.svg" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 2000.0
+
+[node name="Entity" type="RigidBody2D"]
+input_pickable = true
+script = ExtResource( 1 )
+colour = Color( 0.611765, 0.419608, 0.67451, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -84.0
+margin_top = -100.0
+margin_right = 88.0
+margin_bottom = 100.0
+theme = ExtResource( 3 )
+text = "Name of Entity"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 1, 0 )
+space_override = 1
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = -200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color( 0.905882, 0.576471, 0.576471, 1 )
+shape = SubResource( 2 )
+
+[node name="Anchor" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -48 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 4 )
+
+[connection signal="input_event" from="." to="." method="_on_Entity_input_event"]
